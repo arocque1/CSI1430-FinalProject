@@ -1,7 +1,3 @@
-//
-// Created by arocq on 3/20/2024.
-//
-
 /*
  * SDL_Plotter.h
  *
@@ -33,9 +29,9 @@ static int Sound(void *data){
 
     while(p->running){
         SDL_mutexP( p->mut );
-        SDL_CondWait(p->cond, p->mut);
-        Mix_PlayChannel( -1, gScratch, 0 );
-        p->play = false;
+          SDL_CondWait(p->cond, p->mut);
+          Mix_PlayChannel( -1, gScratch, 0 );
+          p->play = false;
         SDL_mutexV(p->mut);
     }
 
@@ -58,8 +54,8 @@ SDL_Plotter::SDL_Plotter(int r, int c, bool WITH_SOUND){
     SDL_Init(SDL_INIT_AUDIO);
 
     window   = SDL_CreateWindow("SDL2 Pixel Drawing",
-                                SDL_WINDOWPOS_UNDEFINED,
-                                SDL_WINDOWPOS_UNDEFINED, col, row, 0);
+                                 SDL_WINDOWPOS_UNDEFINED,
+                                 SDL_WINDOWPOS_UNDEFINED, col, row, 0);
 
     renderer = SDL_CreateRenderer(window, -1, 0);
 
@@ -77,7 +73,7 @@ SDL_Plotter::SDL_Plotter(int r, int c, bool WITH_SOUND){
     Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
     soundCount = 0;
     update();
-}
+  }
 
 
 SDL_Plotter::~SDL_Plotter(){
@@ -189,7 +185,7 @@ void SDL_Plotter::plotPixel(int x, int y, int r, int g, int b){
 }
 
 void SDL_Plotter::clear(){
-    memset(pixels, WHITE, col * row * sizeof(Uint32));
+         memset(pixels, WHITE, col * row * sizeof(Uint32));
 }
 
 int SDL_Plotter::getRow(){
@@ -202,12 +198,12 @@ int SDL_Plotter::getCol(){
 
 void SDL_Plotter::initSound(string sound){
     if(!soundMap[sound].running){
-        param* p = &soundMap[sound];
-        p->name = sound;
-        p->cond = SDL_CreateCond();
-        p->mut = SDL_CreateMutex();
+            param* p = &soundMap[sound];
+            p->name = sound;
+            p->cond = SDL_CreateCond();
+            p->mut = SDL_CreateMutex();
 
-        p->threadID = SDL_CreateThread( Sound, sound.c_str(), (void*)p );
+            p->threadID = SDL_CreateThread( Sound, sound.c_str(), (void*)p );
     }
 }
 
@@ -232,51 +228,51 @@ void SDL_Plotter::Sleep(int ms){
 
 
 bool SDL_Plotter::getMouseDown(int& x, int& y){
-    bool flag = false;
-    x = y = 0;
-    if(SDL_PollEvent(&event)){
-        if(event.type == SDL_MOUSEBUTTONDOWN){
-            //Get mouse position
-            flag = true;
-            SDL_GetMouseState( &x, &y );
+        bool flag = false;
+        x = y = 0;
+        if(SDL_PollEvent(&event)){
+            if(event.type == SDL_MOUSEBUTTONDOWN){
+                //Get mouse position
+                flag = true;
+                SDL_GetMouseState( &x, &y );
+            }
+            else{
+                SDL_PushEvent(&event);
+            }
         }
-        else{
-            SDL_PushEvent(&event);
-        }
-    }
-    return flag;
+        return flag;
 }
 
 bool SDL_Plotter::getMouseUp(int& x, int& y){
-    bool flag = false;
-    x = y = 0;
-    if(SDL_PollEvent(&event)){
-        if(event.type == SDL_MOUSEBUTTONUP){
-            //Get mouse position
-            flag = true;
-            SDL_GetMouseState( &x, &y );
+        bool flag = false;
+        x = y = 0;
+        if(SDL_PollEvent(&event)){
+            if(event.type == SDL_MOUSEBUTTONUP){
+                //Get mouse position
+                flag = true;
+                SDL_GetMouseState( &x, &y );
+            }
+            else{
+                SDL_PushEvent(&event);
+            }
         }
-        else{
-            SDL_PushEvent(&event);
-        }
-    }
-    return flag;
+        return flag;
 }
 
 bool SDL_Plotter::getMouseMotion(int& x, int& y){
-    bool flag = false;
-    x = y = 0;
-    if(SDL_PollEvent(&event)){
-        if(event.type == SDL_MOUSEMOTION){
-            //Get mouse position
-            flag = true;
-            SDL_GetMouseState( &x, &y );
+        bool flag = false;
+        x = y = 0;
+        if(SDL_PollEvent(&event)){
+            if(event.type == SDL_MOUSEMOTION){
+                //Get mouse position
+                flag = true;
+                SDL_GetMouseState( &x, &y );
+            }
+            else{
+                SDL_PushEvent(&event);
+            }
         }
-        else{
-            SDL_PushEvent(&event);
-        }
-    }
-    return flag;
+        return flag;
 }
 
 void SDL_Plotter::getMouseLocation(int& x, int& y){

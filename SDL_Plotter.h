@@ -1,12 +1,3 @@
-//
-// Created by arocq on 3/20/2024.
-//
-
-#ifndef GROUP_PROJECT_SDLPLOTTER_H
-#define GROUP_PROJECT_SDLPLOTTER_H
-
-#endif //GROUP_PROJECT_SDLPLOTTER_H
-
 /*
  * SDL_Plotter.h
  *
