@@ -23,11 +23,9 @@ int main(int argc, char** argv) {
     
     cout << "WELCOME TO CONWAY'S GAME OF LIFE!" << endl;
 
-    while (!g.getQuit())
+    //Initialize based on mouseclicks
+    while (!g.kbhit())
     {
-        if (g.kbhit()) {
-        }
-        
         if (g.mouseClick()) {
             point p = g.getMouseClick();
             cout << p.x/SIDE << " " << p.y/SIDE << endl;
@@ -41,7 +39,24 @@ int main(int argc, char** argv) {
         
         drawGrid(g);
         g.update();
+
+
     }
+
+    while(!g.getQuit()){
+        for(int i = 0; i < dim; i++){
+            for(int j = 0; j < dim; j++){
+                //call the updated object
+                //objType newType
+                //data[i][j].updateType(newType)
+                //data[i][j].draw(g)
+            }
+        }
+
+
+    }
+
+
 
     
     return 0;
