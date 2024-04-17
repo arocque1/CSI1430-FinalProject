@@ -22,7 +22,6 @@ public:
     void setRow(int);
     void setCol(int);
     void click();
-    void updateType(objType);
 };
 
 #endif /* square_h */

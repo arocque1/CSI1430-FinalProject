@@ -10,7 +10,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
     SDL_Plotter g(SIZE, SIZE);
-    
+
     int dim = SIZE/SIDE;
     Square data[dim][dim];
     //Init Data
@@ -20,12 +20,14 @@ int main(int argc, char** argv) {
             data[r][c].setCol(c);
         }
     }
-    
+
     cout << "WELCOME TO CONWAY'S GAME OF LIFE!" << endl;
 
-    //Initialize based on mouseclicks
-    while (!g.kbhit())
+    while (!g.getQuit())
     {
+        if (g.kbhit()) {
+        }
+
         if (g.mouseClick()) {
             point p = g.getMouseClick();
             cout << p.x/SIDE << " " << p.y/SIDE << endl;
@@ -36,13 +38,12 @@ int main(int argc, char** argv) {
                 data[r][c].draw(g);
             }
         }
-        
+
         drawGrid(g);
         g.update();
-
-
     }
 
+    /*
     while(!g.getQuit()){
         for(int i = 0; i < dim; i++){
             for(int j = 0; j < dim; j++){
@@ -55,9 +56,8 @@ int main(int argc, char** argv) {
 
 
     }
+    */
 
 
-
-    
     return 0;
 }

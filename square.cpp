@@ -49,9 +49,3 @@ void Square::click(){
             
     }
 }
-
-void Square::updateType(objType newtype){
-    //finish later
-    //type = newtype;
-
-}
