@@ -66,7 +66,7 @@ void Animals::setHung(int anim){
         hunger = 7;
     }
     else if(anim == 8){
-        hunger == 8;
+        hunger = 8;
     }
 }
 
@@ -104,7 +104,7 @@ void Animals::setRep(int anim){
     }
     else if(anim == 3 || anim == 7){
         chance = rand() % 4;
-        if(chance = 1){
+        if(chance == 1){
             reproduce = true;
         }
     }
