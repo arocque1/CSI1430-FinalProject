@@ -11,6 +11,44 @@ eagle = 7 ///\/
 bear = 8 ///\
 */
 
+
+bool Animals::isAlive(std::array<std::array<int, GAME_HEIGHT>, GAME_WIDTH>& game,
+             const int x,
+             const int y)
+{
+    
+    int alive = 0;
+    
+    //testing the left position
+    if(x>0 && game[x-1][y] == 1) alive += 1;
+    //testing the right
+    if(x<GAME_WIDTH && game[x+1][y] == 1) alive += 1;
+    //testing the top
+    if(y>0 && game[x][y-1] == 1) alive += 1;
+    //testing the bottom
+    if(y<GAME_HEIGHT && game[x][y+1] == 1) alive += 1;
+    
+    //testing top left
+    if(y > 0 && x > 0 && game[x-1][y-1] == 1) alive += 1;
+    //testing top right
+    if(y > 0 && x < GAME_WIDTH && game[x+1][y-1] == 1) alive += 1;
+    //testing bottom left
+    if(y < GAME_HEIGHT && x > 0 && game[x-1][y+1] == 1) alive += 1;
+    //testing bottom right
+    if(y < GAME_HEIGHT && x < GAME_WIDTH && game[x+1][y+1] == 1) alive += 1;
+    
+    //live and fewer than 2 die
+    if(game[x][y] == 1 && alive < 2) return false;
+    //alive and 2 or 3 then live
+    if(game[x][y] == 1 && (alive == 2 || alive == 3)) return true;
+    //more than 3 alive then die
+    if(alive > 3) return false;
+    //3 alive and point is dead, come to life
+    if(game[x][y] == 0 && alive == 3) return true;
+    
+    return false;
+}
+
 void Animals::setHP(int anim){
     if(anim == 1 || anim == 2){
         health = 4;

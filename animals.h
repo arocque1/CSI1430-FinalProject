@@ -1,6 +1,10 @@
 #ifndef animals_h
 #define animals_h
 #include <string>
+#include <array>
+
+const int GAME_WIDTH = 640;
+const int GAME_HEIGHT = 480;
 
 class Animals{
 private:
@@ -21,6 +25,8 @@ public:
     int getAtt();
     void setRep(int anim);
     bool getRep();
+    bool isAlive(std::array<std::array<int, GAME_HEIGHT>, GAME_WIDTH>
+                 & game,const int x,const int y);
 
 };
 
