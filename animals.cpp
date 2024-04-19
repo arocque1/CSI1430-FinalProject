@@ -52,7 +52,7 @@ int Animals::getSP(){
     return speed;
 }
 
-void Animals::setHung(int anim){
+void Animals::setHunger(int anim){
     if(anim == 3){
         hunger = 12;
     }
@@ -70,11 +70,12 @@ void Animals::setHung(int anim){
     }
 }
 
-int Animals::getHung(){
+int Animals::getHunger(){
     return hunger;
 }
 
-void Animals::setAtt(int anim){
+void Animals::setAttack(int anim){
+
     if(anim == 8){
         attack = 12;
     }
@@ -89,11 +90,11 @@ void Animals::setAtt(int anim){
     }
 }
 
-int Animals::getAtt(){
+int Animals::getAttack(){
     return attack;
 }
 
-void Animals::setRep(int anim){
+void Animals::setReproduction(int anim) {
     int chance;
 
     if(anim == 1 || anim == 2 || anim == 4){
@@ -122,6 +123,59 @@ void Animals::setRep(int anim){
     }
 }
 
-bool Animals::getRep(){
+bool Animals::getReproduction() {
     return reproduce;
+}
+
+void Animals::setType(objType t){
+    type = t;
+}
+
+int Animals::moveX(int col){
+    int newX;
+    moveDir dir = moveDir(rand() % 3);
+    int xmag = (rand() % speed) + 1;
+
+    switch(dir) {
+        case POS:
+            xmag *= 1;
+            break;
+        case NEG:
+            xmag *= -1;
+            break;
+        case NA:
+            xmag = 0;
+            break;
+    }
+    newX = col + xmag;
+    return newX;
+}
+
+int Animals::moveY(int row){
+    int newY;
+    moveDir dir = moveDir(rand() % 3);
+    int ymag = (rand() % speed) + 1;
+
+    switch(dir) {
+        case POS:
+            ymag *= 1;
+            break;
+        case NEG:
+            ymag *= -1;
+            break;
+        case NA:
+            ymag = 0;
+            break;
+    }
+    newY = row + ymag;
+    return newY;
+}
+
+void Animals::clear(){
+    health = -1;
+    speed = -1;
+    hunger = -1;
+    attack = -1;
+    reproduce = false;
+    type = EMPTY;
 }

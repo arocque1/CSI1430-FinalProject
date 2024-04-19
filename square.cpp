@@ -8,10 +8,10 @@
 #include <stdio.h>
 #include "square.h"
 
+
 Square::Square(){
    row = 0;
    col = 0;
-   type = EMPTY;
    _color = color(255,255,255);
 };
 
@@ -44,8 +44,13 @@ void Square::click(){
             break;
         case FOX: _color = color(255,0,0);
             break;
-
-
-            
     }
+    animal.setType(type);
+
+}
+
+void Square::clear(){
+    type = EMPTY;
+    _color = color(255,255,255);
+    animal.clear();
 }
