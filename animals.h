@@ -1,15 +1,8 @@
 #ifndef animals_h
 #define animals_h
 #include <string>
-<<<<<<< HEAD
 #include <vector>
 #include "config.h"
-=======
-#include <array>
-
-const int GAME_WIDTH = 640;
-const int GAME_HEIGHT = 480;
->>>>>>> 0f19e05209db1496c45f015ae0ad9dace4f75343
 
 class Animals{
 private:
@@ -27,7 +20,6 @@ public:
     int getHP();
     void setSP(int anim);
     int getSP();
-<<<<<<< HEAD
     void setHunger(int anim);
     int getHunger();
     void setAttack(int anim);
@@ -38,17 +30,6 @@ public:
     int moveX(int col);
     int moveY(int row);
     void clear();
-=======
-    void setHung(int anim);
-    int getHung();
-    void setAtt(int anim);
-    int getAtt();
-    void setRep(int anim);
-    bool getRep();
-    bool isAlive(std::array<std::array<int, GAME_HEIGHT>, GAME_WIDTH>
-                 & game,const int x,const int y);
-
->>>>>>> 0f19e05209db1496c45f015ae0ad9dace4f75343
 };
 
 

@@ -8,20 +8,20 @@
 #ifndef square_h
 #define square_h
 #include "SDL_Plotter.h"
-#include "animals.h"
+#include "config.h"
 
-struct Square {
+class Square {
+private:
+    int row, col;
     objType type;
     color _color;
-    int row, col;
-    Animals animal;
 
+public:
     Square();
     void draw(SDL_Plotter& g);
     void setRow(int);
     void setCol(int);
     void click();
-    void clear();
 };
 
 #endif /* square_h */
