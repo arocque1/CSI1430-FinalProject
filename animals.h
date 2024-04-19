@@ -16,7 +16,7 @@ private:
 
 
 public:
-    void setHP(int hp);
+    void setHP(int anim);
     int getHP();
     void setSP(int anim);
     int getSP();

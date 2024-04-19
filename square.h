@@ -9,19 +9,23 @@
 #define square_h
 #include "SDL_Plotter.h"
 #include "config.h"
+#include "animals.h"
 
-class Square {
-private:
-    int row, col;
+struct Square {
+
     objType type;
     color _color;
+    int row, col;
+    Animals animal;
 
-public:
+
+
     Square();
     void draw(SDL_Plotter& g);
     void setRow(int);
     void setCol(int);
     void click();
+    void clear();
 };
 
 #endif /* square_h */

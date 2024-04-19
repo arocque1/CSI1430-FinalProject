@@ -46,6 +46,13 @@ void Square::click(){
             break;
 
 
-            
+
     }
+    animal.setType(type);
+}
+
+void Square::clear(){
+    type = EMPTY;
+    _color = color(255, 255, 255);
+    animal.clear();
 }
