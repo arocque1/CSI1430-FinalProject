@@ -6,10 +6,10 @@
 
 class Animals{
 private:
-    int health;
+    int health = 2;
     int speed = 2;
-    int hunger;
-    int attack;
+    int hunger = 2;
+    int attack = 2;
     bool reproduce = false;
     objType type;
     enum moveDir {POS, NEG, NA};
@@ -27,8 +27,8 @@ public:
     void setReproduction(int anim);
     bool getReproduction();
     void setType(objType);
-    int moveX(int col);
-    int moveY(int row);
+    int moveX(int col, int dim);
+    int moveY(int row, int dim);
     void clear();
 };
 

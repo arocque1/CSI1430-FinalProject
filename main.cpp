@@ -5,6 +5,8 @@
 #include "square.h"
 #include "grid.h"
 #include "animals.h"
+#include <unistd.h>
+
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -14,10 +16,13 @@ int main(int argc, char** argv) {
     int dim = SIZE/SIDE;
     int clock = 0;
     bool setup = true;
+    bool reproduce;
     int newPos;
     int newX;
     int newY;
+    Animals test;
     Square data[dim][dim];
+    Square tempData[dim][dim];
     //Init Data
     for(int r = 0; r < dim; r++){
         for(int c = 0; c < dim; c++){
@@ -26,13 +31,11 @@ int main(int argc, char** argv) {
         }
     }
     srand(time(0));
+    objType T;
+    color Tcol;
 
-    cout << "WELCOME TO CONWAY'S GAME OF LIFE!" << endl;
 
-    //Issue: when you make the while loop condition to anything but !g.getQuit(),
-    //the plot instantly crashes and doesn't respond.
-    while(!g.getQuit())
-    {
+    while(!g.getQuit()){
         if(g.kbhit()){
             if(g.getKey() == 'r'){
                 setup = false;
@@ -43,7 +46,7 @@ int main(int argc, char** argv) {
 
             if (g.mouseClick()) {
                 point p = g.getMouseClick();
-                cout << p.x / SIDE << " " << p.y / SIDE << endl;
+                //cout << p.x / SIDE << " " << p.y / SIDE << endl;
                 data[p.y / SIDE][p.x / SIDE].click();
 
             }
@@ -58,31 +61,38 @@ int main(int argc, char** argv) {
 
             clock++;
             //Move animals
-            for(int i = 0; i < dim; i++){
-                cout << i;
-                for(int j = 0; j < dim; j++){
-                    if(data[i][j].type != EMPTY){
-                        newX = data[i][j].animal.moveX(j);
-                        newY = data[i][j].animal.moveY(i);
-                        data[newY][newX] = data[i][j];
-                        data[i][j].clear();
+            for(int i = 0; i < dim; i++){ //Rows
+                for(int j = 0; j < dim; j++){ //Columns
+                    if(data[i][j].type > GRASS){
+                        newX = data[i][j].animal.moveX(j, dim);
+                        newY = data[i][j].animal.moveY(i, dim);
 
+                        tempData[newY][newX] = data[i][j];
+                        tempData[newY][newX].update(newY, newX);
+
+                        if(data[newY][newX].type != EMPTY){
+                            reproduce = tempData[newY][newX].interact(data[newY][newX]);
+                            //Spawn in a new animal if reproduce is true
+                        }
+                        data[i][j].clear();
+                        data[i][j].draw(g);
                     }
 
-                    data[i][j].draw(g);
                 }
 
             }
-            cout << endl;
-            //Add grass, check for attacks, reproduce, etc.
+
+            //Display
             for(int i = 0; i < dim; i++){
                 for(int j = 0; j < dim; j++){
-                    //if(data[i][j].type != EMPTY){
-                    //  data[i][j].animal.move(i, j);
-                    //}
+                    data[i][j] = tempData[i][j];
+                    tempData[i][j].clear();
                     data[i][j].draw(g);
+
                 }
             }
+
+            sleep(1);
 
         }
 

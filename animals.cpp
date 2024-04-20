@@ -131,43 +131,47 @@ void Animals::setType(objType t){
     type = t;
 }
 
-int Animals::moveX(int col){
+int Animals::moveX(int col, int dim){
     int newX;
-    moveDir dir = moveDir(rand() % 3);
-    int xmag = (rand() % speed) + 1;
+    do {
+        moveDir dir = moveDir(rand() % 3);
+        int xmag = (rand() % speed) + 1;
 
-    switch(dir) {
-        case POS:
-            xmag *= 1;
-            break;
-        case NEG:
-            xmag *= -1;
-            break;
-        case NA:
-            xmag = 0;
-            break;
-    }
-    newX = col + xmag;
+        switch (dir) {
+            case POS:
+                xmag *= 1;
+                break;
+            case NEG:
+                xmag *= -1;
+                break;
+            case NA:
+                xmag = 0;
+                break;
+        }
+        newX = col + xmag;
+    }while(newX >= dim || newX <= 0);
     return newX;
 }
 
-int Animals::moveY(int row){
+int Animals::moveY(int row, int dim){
     int newY;
-    moveDir dir = moveDir(rand() % 3);
-    int ymag = (rand() % speed) + 1;
+    do {
+        moveDir dir = moveDir(rand() % 3);
+        int ymag = (rand() % speed) + 1;
 
-    switch(dir) {
-        case POS:
-            ymag *= 1;
-            break;
-        case NEG:
-            ymag *= -1;
-            break;
-        case NA:
-            ymag = 0;
-            break;
-    }
-    newY = row + ymag;
+        switch (dir) {
+            case POS:
+                ymag *= 1;
+                break;
+            case NEG:
+                ymag *= -1;
+                break;
+            case NA:
+                ymag = 0;
+                break;
+        }
+        newY = row + ymag;
+    }while(newY >= dim || newY <= 0);
     return newY;
 }
 
@@ -179,3 +183,4 @@ void Animals::clear(){
     reproduce = false;
     type = EMPTY;
 }
+
