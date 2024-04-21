@@ -20,7 +20,7 @@ public:
     int getHP();
     void setSP(int anim);
     int getSP();
-    void setHunger(int anim);
+    void setHunger(int anim, int clock);
     int getHunger();
     void setAttack(int anim);
     int getAttack();

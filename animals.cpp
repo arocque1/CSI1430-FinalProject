@@ -52,7 +52,7 @@ int Animals::getSP(){
     return speed;
 }
 
-void Animals::setHunger(int anim){
+void Animals::setHunger(int anim, int clock){
     if(anim == 3){
         hunger = 12;
     }
@@ -67,6 +67,12 @@ void Animals::setHunger(int anim){
     }
     else if(anim == 8){
         hunger = 8;
+    }
+
+    hunger -= clock;
+
+    if (hunger < 0) {
+        hunger = 0;
     }
 }
 
@@ -183,4 +189,6 @@ void Animals::clear(){
     reproduce = false;
     type = EMPTY;
 }
+
+
 
