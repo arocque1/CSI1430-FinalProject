@@ -181,7 +181,7 @@ int Animals::moveY(int row, int dim){
     return newY;
 }
 
-void setStatsBasedOnType() {
+void Animals::setStats() {
     switch(type) {
         case RABBIT:
             health = 4;

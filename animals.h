@@ -30,7 +30,7 @@ public:
     int moveX(int col, int dim);
     int moveY(int row, int dim);
     Animals(objType t) : type(t) {
-        setStatsBasedOnType();
+        setStats();
     }
     void clear();
 };
