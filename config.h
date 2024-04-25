@@ -11,7 +11,7 @@
 const int SIZE = 500;
 const int SIDE = 25;
 
-enum objType {EMPTY, WATER, GRASS, RABBIT, FOX};
+enum objType {EMPTY, WATER, GRASS, RABBIT, FOX, SNAKE, DEER, WOLF, EAGLE, BEAR};
 const int NUM_TYPES = 5;
 const int dim = SIZE/SIDE;
 

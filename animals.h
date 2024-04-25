@@ -29,9 +29,7 @@ public:
     void setType(objType);
     int moveX(int col, int dim);
     int moveY(int row, int dim);
-    Animals(objType t) : type(t) {
-        setStats();
-    }
+    void setStats();
     void clear();
 };
 
