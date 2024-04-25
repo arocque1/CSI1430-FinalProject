@@ -13,5 +13,6 @@ const int SIDE = 25;
 
 enum objType {EMPTY, WATER, GRASS, RABBIT, FOX};
 const int NUM_TYPES = 5;
+const int dim = SIZE/SIDE;
 
 #endif /* config_h */

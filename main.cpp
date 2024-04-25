@@ -5,7 +5,9 @@
 #include "square.h"
 #include "grid.h"
 #include "animals.h"
+#include "Envioronment.h"
 #include <unistd.h>
+
 
 using namespace std;
 
@@ -13,7 +15,6 @@ int main(int argc, char** argv) {
 
     SDL_Plotter g(SIZE, SIZE);
 
-    int dim = SIZE/SIDE;
     int clock = 0;
     bool setup = true;
     bool reproduce;
@@ -53,6 +54,7 @@ int main(int argc, char** argv) {
             for (int r = 0; r < dim; r++) {
                 for (int c = 0; c < dim; c++) {
                     data[r][c].draw(g);
+                    //data[r][c].setHunger();
                 }
             }
 
@@ -71,9 +73,15 @@ int main(int argc, char** argv) {
                         tempData[newY][newX].update(newY, newX);
 
                         if(data[newY][newX].type != EMPTY){
-                            reproduce = tempData[newY][newX].interact(data[newY][newX]);
+                            //reproduce = tempData[newY][newX].interact(data[newY][newX]);
                             //Spawn in a new animal if reproduce is true
                         }
+                        //tempData[newY][newX].animal.incrimentHunger();
+
+                        if(tempData[newY][newX].animal.getHunger() <= 0){
+                            tempData[newY][newX].clear();
+                        }
+
                         data[i][j].clear();
                         data[i][j].draw(g);
                     }
@@ -82,15 +90,21 @@ int main(int argc, char** argv) {
 
             }
 
+            setGrass(data, g);
+
+
             //Display
             for(int i = 0; i < dim; i++){
                 for(int j = 0; j < dim; j++){
-                    data[i][j] = tempData[i][j];
-                    tempData[i][j].clear();
-                    data[i][j].draw(g);
-
+                    if(tempData[i][j].type != EMPTY){
+                        data[i][j] = tempData[i][j];
+                        tempData[i][j].clear();
+                        data[i][j].draw(g);
+                    }
                 }
             }
+
+
 
             sleep(1);
 
