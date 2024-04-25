@@ -181,6 +181,59 @@ int Animals::moveY(int row, int dim){
     return newY;
 }
 
+void setStatsBasedOnType() {
+    switch(type) {
+        case RABBIT:
+            health = 4;
+            speed = 5;
+            hunger = 3;
+            attack = 1;
+            break;
+        case FOX:
+            health = 8;
+            speed = 4;
+            hunger = 7;
+            attack = 8;
+            break;
+        case SNAKE:
+            health = 8;
+            speed = 3;
+            hunger = 12;
+            attack = 5;
+            break;
+        case DEER:
+            health = 12;
+            speed = 2;
+            hunger = 6;
+            attack = 1;
+            break;
+        case WOLF:
+            health = 12;
+            speed = 4;
+            hunger = 7;
+            attack = 5;
+            break;
+        case EAGLE:
+            health = 16;
+            speed = 5;
+            hunger = 6;
+            attack = 1;
+            break;
+        case BEAR:
+            health = 30;
+            speed = 2;
+            hunger = 8;
+            attack = 12;
+            break;
+        default:
+            health = 2;
+            speed = 2;
+            hunger = 2;
+            attack = 2;
+            break;
+    }
+}
+
 void Animals::clear(){
     health = -1;
     speed = -1;
