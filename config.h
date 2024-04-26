@@ -11,8 +11,10 @@
 const int SIZE = 500;
 const int SIDE = 25;
 
-enum objType {EMPTY, WATER, GRASS, RABBIT, FOX, SNAKE, DEER, WOLF, EAGLE, BEAR};
-const int NUM_TYPES = 5;
+const int NUM_TYPES = 10;
 const int dim = SIZE/SIDE;
+enum objType {EMPTY, WATER, GRASS, RABBIT, FOX, SNAKE, DEER, WOLF, EAGLE, BEAR};
+const int attackChance[NUM_TYPES] = {0, 0, 0, 1, 4, 6, 2, 6, 3, 7};
+
 
 #endif /* config_h */

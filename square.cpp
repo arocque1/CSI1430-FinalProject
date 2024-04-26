@@ -40,9 +40,19 @@ void Square::click(){
             break;
         case WATER: _color = color(0,0,255);
             break;
-        case RABBIT: _color = color(100,100,100);
+        case RABBIT: _color = color(153,51,255);
             break;
-        case FOX: _color = color(255,0,0);
+        case FOX: _color = color(255,128,0);
+            break;
+        case SNAKE: _color = color(255,255,0);
+            break;
+        case DEER: _color = color(139,69,19);
+            break;
+        case WOLF: _color = color(150,150,150);
+            break;
+        case EAGLE: _color = color(204,0,102);
+            break;
+        case BEAR: _color = color(0,0,0);
             break;
     }
     animal.setType(type);
@@ -64,59 +74,60 @@ void Square::update(int Nrow, int Ncol){
             break;
         case WATER: _color = color(0,0,255);
             break;
-        case RABBIT: _color = color(100,100,100);
+        case RABBIT: _color = color(153,51,255);
             break;
-        case FOX: _color = color(255,0,0);
+        case FOX: _color = color(255,128,0);
+            break;
+        case SNAKE: _color = color(255,255,0);
+            break;
+        case DEER: _color = color(139,69,19);
+            break;
+        case WOLF: _color = color(150,150,150);
+            break;
+        case EAGLE: _color = color(204,0,102);
+            break;
+        case BEAR: _color = color(0,0,0);
             break;
     }
 }
 
-bool Square::interact(Square other){
-    bool reproduce;
-    bool attack;
+bool Square::interact(Square& other, bool sameType){
+    bool reproduce = false;
+    bool attack = false;
     int newHP;
-    if(other.type == type){
-        do {
-            //Roll a chance if the animals will reproduce or attack eachother(2 separate functions)
-            //The while loop makes it so that it keeps rolling a chance until
-            //They are both not true
+    int randNum = rand() % 10;
 
-            /*
-            if(The chance of reproduction is > than something)){
+    if(sameType && other.type > GRASS && other.type == type){
+            cout << "reproducing" << endl;
+            if(randNum <= animal.getReproduction()){
                 reproduce = true;
             }
-            if(The chance of attacking is > than something)){
+            else if(randNum <= attackChance[type]){
                 attack = true;
             }
-            */
-        }while(reproduce && attack);
     }
     else{
         if(other.type > GRASS){
-            attack = true;
-        }
-        else{
-            switch(other.type){
-                case WATER:
-                    //Do something with adding health or hydration
-                    break;
-                case GRASS:
-                    //Do something with adding health
-                    break;
-
+            if(randNum <= attackChance[type]){
+                attack = true;
             }
+        }
+        else if(other.type != EMPTY){
+            animal.addHunger();
         }
     }
 
     if(attack){
         newHP = animal.getHP() - other.animal.getAttack();
-        if(newHP < 0){
+        if(newHP <= 0){
             type = other.type;
             _color = other._color;
             animal = other.animal;
             newHP = other.animal.getHP() - animal.getAttack();
+            other.clear();
         }
         animal.setHP(newHP);
+        cout << "attack" << endl;
     }
 
 

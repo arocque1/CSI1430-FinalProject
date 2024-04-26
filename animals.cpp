@@ -11,125 +11,27 @@ eagle = 7 ///\/
 bear = 8 ///\
 */
 
-void Animals::setHP(int anim){
-    if(anim == 1 || anim == 2){
-        health = 4;
-    }
-    if(anim == 3 || anim == 6){
-        health = 8;
-    }
-    else if(anim == 4 || anim == 5){
-        health = 12;
-    }
-    else if(anim == 7){
-        health = 16;
-    }
-    else if(anim == 8){
-        health = 30;
-    }
-}
+
 
 int Animals::getHP(){
     return health;
 }
 
-void Animals::setSP(int anim){
-    if(anim == 1 || anim == 2 || anim == 7){
-        speed = 5;
-    }
-    else if(anim == 5 || anim == 7 || anim == 4){
-        speed = 4;
-    }
-    else if(anim == 3 || anim == 6){
-        speed = 3;
-    }
-    else{
-        speed = 2;
-    }
-}
 
 int Animals::getSP(){
     return speed;
 }
 
-void Animals::setHunger(int anim, int clock){
-    if(anim == 3){
-        hunger = 12;
-    }
-    else if(anim == 1 || anim == 2){
-        hunger = 3;
-    }
-    else if(anim == 4 || anim == 6 || anim == 7){
-        hunger = 6;
-    }
-    else if(anim == 5){
-        hunger = 7;
-    }
-    else if(anim == 8){
-        hunger = 8;
-    }
-
-    hunger -= clock;
-
-    if (hunger < 0) {
-        hunger = 0;
-    }
-}
 
 int Animals::getHunger(){
     return hunger;
-}
-
-void Animals::setAttack(int anim){
-
-    if(anim == 8){
-        attack = 12;
-    }
-    else if(anim == 7 || anim == 5){
-        attack = 8;
-    }
-    else if(anim == 3 || anim == 6){
-        attack = 5;
-    }
-    else{
-        attack = 1;
-    }
 }
 
 int Animals::getAttack(){
     return attack;
 }
 
-void Animals::setReproduction(int anim) {
-    int chance;
-
-    if(anim == 1 || anim == 2 || anim == 4){
-        chance = rand() % 2;
-        if(chance == 1){
-            reproduce = true;
-        }
-    }
-    else if(anim == 3 || anim == 7){
-        chance = rand() % 4;
-        if(chance == 1){
-            reproduce = true;
-        }
-    }
-    else if(anim == 5 || anim == 6){
-        chance = rand() % 5;
-        if(chance == 1){
-            reproduce = true;
-        }
-    }
-    else if(anim == 8){
-        chance = rand() % 7;
-        if(chance == 1){
-            reproduce = true;
-        }
-    }
-}
-
-bool Animals::getReproduction() {
+int Animals::getReproduction() {
     return reproduce;
 }
 
@@ -186,61 +88,81 @@ void Animals::setStats() {
         case RABBIT:
             health = 4;
             speed = 5;
-            hunger = 3;
+            hunger = 10;
             attack = 1;
+            reproduce = 6;
             break;
         case FOX:
             health = 8;
             speed = 4;
-            hunger = 7;
+            hunger = 14;
             attack = 8;
+            reproduce = 2;
             break;
         case SNAKE:
             health = 8;
             speed = 3;
-            hunger = 12;
+            hunger = 24;
             attack = 5;
+            reproduce = 3;
             break;
         case DEER:
             health = 12;
             speed = 2;
-            hunger = 6;
+            hunger = 12;
             attack = 1;
+            reproduce = 5;
             break;
         case WOLF:
             health = 12;
             speed = 4;
-            hunger = 7;
-            attack = 5;
+            hunger = 14;
+            attack = 7;
+            reproduce = 2;
             break;
         case EAGLE:
             health = 16;
             speed = 5;
-            hunger = 6;
-            attack = 1;
+            hunger = 12;
+            attack = 6;
+            reproduce = 3;
             break;
         case BEAR:
             health = 30;
             speed = 2;
-            hunger = 8;
+            hunger = 16;
             attack = 12;
+            reproduce = 1;
             break;
         default:
             health = 2;
             speed = 2;
             hunger = 2;
             attack = 2;
+            reproduce = 2;
             break;
     }
 }
 
 void Animals::clear(){
-    health = -1;
-    speed = -1;
-    hunger = -1;
-    attack = -1;
-    reproduce = false;
+    health = 0;
+    speed = 0;
+    hunger = 0;
+    attack = 0;
+    reproduce = 0;
     type = EMPTY;
+}
+
+void Animals::incrimentHunger(){
+    hunger--;
+}
+
+void Animals::addHunger(){
+    hunger++;
+}
+
+void Animals::setHP(int newHP){
+    health = newHP;
 }
 
 

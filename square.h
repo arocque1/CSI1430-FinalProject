@@ -27,7 +27,7 @@ struct Square {
     void click();
     void clear();
     void update(int, int);
-    bool interact(Square);
+    bool interact(Square&, bool);
 };
 
 #endif /* square_h */
