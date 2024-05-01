@@ -6,7 +6,7 @@ void setGrass(Square data[][dim], SDL_Plotter& g){
     for (int r = 0; r < dim; r++) {
         for (int c = 0; c < dim; c++) {
             if(data[r][c].type == EMPTY){
-                setGrass = rand()%100;
+                setGrass = rand()%10;
                 if(setGrass == 0){
                     data[r][c].type = GRASS;
 
@@ -25,7 +25,7 @@ void setWater(Square data[][dim], SDL_Plotter& g){
     for (int r = 0; r < dim; r++) {
         for (int c = 0; c < dim; c++) {
             if(data[r][c].type == EMPTY){
-                setWater = rand() % 500;
+                setWater = rand() % 50;
                 if(setWater == 0){
                     data[r][c].type = WATER;
 
