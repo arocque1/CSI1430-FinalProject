@@ -17,15 +17,8 @@ eagle = 7 ///\/
 bear = 8 ///\
 */
 
-
-
 int Animals::getHP(){
     return health;
-}
-
-
-int Animals::getSP(){
-    return speed;
 }
 
 
@@ -40,6 +33,7 @@ int Animals::getAttack(){
 int Animals::getReproduction() {
     return reproduce;
 }
+
 
 void Animals::setType(objType t){
     type = t;

@@ -6,6 +6,8 @@
 //Alejandra Castro
 #include "Envioronment.h"
 
+
+
 void setGrass(Square data[][dim], SDL_Plotter& g){
     int setGrass;
     for (int r = 0; r < dim; r++) {
