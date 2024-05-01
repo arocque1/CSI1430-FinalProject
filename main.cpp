@@ -9,12 +9,6 @@
 #include "animals.h"
 #include "Environment.h"
 
-#include "SDL_Plotter.cpp"
-#include "square.cpp"
-#include "grid.cpp"
-#include "animals.cpp"
-#include "Environment.cpp"
-
 string animalNames[NUM_TYPES] = {"EMPTY", "WATER", "GRASS", "RABBIT", "FOX",
                                  "SNAKE", "DEER", "WOLF", "EAGLE","BEAR"};
 
