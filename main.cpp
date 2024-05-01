@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <ctime>
 #include "config.h"
 #include "SDL_Plotter.h"
@@ -6,8 +8,15 @@
 #include "grid.h"
 #include "animals.h"
 #include "Environment.h"
-#include <unistd.h>
 
+#include "SDL_Plotter.cpp"
+#include "square.cpp"
+#include "grid.cpp"
+#include "animals.cpp"
+#include "Environment.cpp"
+
+string animalNames[NUM_TYPES] = {"EMPTY", "WATER", "GRASS", "RABBIT", "FOX",
+                                 "SNAKE", "DEER", "WOLF", "EAGLE","BEAR"};
 
 using namespace std;
 
@@ -27,10 +36,13 @@ int main(int argc, char** argv) {
     int checkY;
     bool sameType;
     int deadCount = 0;
-    int numRabbits = 0;
+    int totalAnimals[NUM_TYPES];
+    int numReproduce = 0;
     Animals test;
     Square data[dim][dim];
     Square tempData[dim][dim];
+    stringstream action;
+    string actionLine;
     //Init Data
     for(int r = 0; r < dim; r++){
         for(int c = 0; c < dim; c++){
@@ -42,6 +54,19 @@ int main(int argc, char** argv) {
     objType T;
     color Tcol;
 
+
+    cout << "Welcome to the Environment Simulator." << endl;
+    cout << "Click on a square to change it's type" << endl;
+    cout << "White   = Empty"  << endl;
+    cout << "Blue    = Water"  << endl;
+    cout << "Green   = Grass"  << endl;
+    cout << "Purple  = Rabbit" << endl;
+    cout << "Orange  = Fox"    << endl;
+    cout << "Yellow  = Snake"  << endl;
+    cout << "Brown   = Deer"   << endl;
+    cout << "Grey    = Wolf"   << endl;
+    cout << "Magenta = Eagle"  << endl;
+    cout << "Black   = Bear"   << endl;
 
     while(!g.getQuit()){
         if(g.kbhit()){
@@ -70,9 +95,24 @@ int main(int argc, char** argv) {
         else{
 
             clock++;
+            action.clear();
+
+            for(int i = 0; i < dim; i++){
+                for(int j = 0; j < dim; j++){
+                    for(int types = 0; types < NUM_TYPES; types++){
+                        totalAnimals[types] = 0;
+                    }
+                }
+            }
+
             //Move animals
             for(int i = 0; i < dim; i++){ //Rows
                 for(int j = 0; j < dim; j++){ //Columns
+
+                    if(data[i][j].type > GRASS){
+                        totalAnimals[data[i][j].type]++;
+                    }
+
                     sameType = false;
                     if(data[i][j].type > GRASS){
                         newX = data[i][j].animal.moveX(j, dim);
@@ -116,15 +156,20 @@ int main(int argc, char** argv) {
                                 }while((tempData[spawnY][spawnX]).type != EMPTY);
                                 tempData[spawnY][spawnX] = data[newY][newX];
                                 tempData[spawnY][spawnX].animal.setStats();
-                                numRabbits++;
-                                cout << "Reproduced. Total: " << numRabbits << endl;
+                                numReproduce++;
+                                action <<animalNames[tempData[newY][newX].type]
+                                    << " Reproduced at (" << dim-newX << ", "
+                                    << dim-newY << ")  ";
                             }
                         }
                         tempData[newY][newX].animal.incrimentHunger();
 
                         if(tempData[newY][newX].animal.getHunger() <= 0){
                             deadCount++;
-                            cout << deadCount << " DEAD" << endl;
+                            action << animalNames[tempData[newY][newX].type]
+                                << " Died at (" << dim-newX << ", " << dim-newY
+                                << ")  ";
+
                             tempData[newY][newX].clear();
                         }
 
@@ -135,6 +180,7 @@ int main(int argc, char** argv) {
                 }
 
             }
+
 
             setGrass(data, g);
             setWater(data, g);
@@ -151,9 +197,24 @@ int main(int argc, char** argv) {
                 }
             }
 
+            cout << setw(12) << "Rabbits" << setw(12) << "Foxes"
+                 << setw(12) << "Snakes"  << setw(12) << "Dears"
+                 << setw(12) << "Wolfs"   << setw(12) << "Eagles"
+                 << setw(12) << "Bears";
+            cout << endl;
+            for(int types = 3; types < NUM_TYPES; types++){
+                cout << setw(12) << totalAnimals[types];
+            }
+            cout << endl;
+            cout << "Dead Total: " << deadCount << "     Reproduced Total: " << numReproduce;
+            cout << endl;
+            getline(action, actionLine);
+            cout << actionLine;
+            for(int i = 0; i < 26; i++){
+                cout << endl;
+            }
 
-
-            sleep(1);
+            g.Sleep(2000);
 
         }
 

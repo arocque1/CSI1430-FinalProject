@@ -1,9 +1,9 @@
-//Jack Fontenot
-//Lademi Aromolaran
-//Alex Rocque
-//Mason Crippen
-//Jody Spikes
-//Alejandra Castro
+//
+//  square.cpp
+//  ClassNotes 3.20
+//
+//  Created by Jody Spikes on 4/3/24.
+//
 
 #include <stdio.h>
 #include "square.h"
@@ -98,7 +98,6 @@ bool Square::interact(Square& other, bool sameType){
     int randNum = rand() % 10;
 
     if(sameType && other.type > GRASS && other.type == type){
-            cout << "reproducing" << endl;
             if(randNum <= animal.getReproduction()){
                 reproduce = true;
             }
@@ -127,7 +126,6 @@ bool Square::interact(Square& other, bool sameType){
             other.clear();
         }
         animal.setHP(newHP);
-        cout << "attack" << endl;
     }
 
 
