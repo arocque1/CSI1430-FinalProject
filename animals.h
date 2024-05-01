@@ -1,3 +1,9 @@
+//Jack Fontenot
+//Lademi Aromolaran
+//Alex Rocque
+//Mason Crippen
+//Jody Spikes
+//Alejandra Castro
 #ifndef animals_h
 #define animals_h
 #include <string>

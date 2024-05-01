@@ -1,9 +1,9 @@
-//
-//  square.cpp
-//  ClassNotes 3.20
-//
-//  Created by Jody Spikes on 4/3/24.
-//
+//Jack Fontenot
+//Lademi Aromolaran
+//Alex Rocque
+//Mason Crippen
+//Jody Spikes
+//Alejandra Castro
 
 #include <stdio.h>
 #include "square.h"

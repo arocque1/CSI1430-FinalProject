@@ -1,9 +1,9 @@
-//
-//  square.h
-//  ClassNotes 3.20
-//
-//  Created by Jody Spikes on 4/3/24.
-//
+//Jack Fontenot
+//Lademi Aromolaran
+//Alex Rocque
+//Mason Crippen
+//Jody Spikes
+//Alejandra Castro
 
 #ifndef square_h
 #define square_h
